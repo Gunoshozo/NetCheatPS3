@@ -109,7 +109,7 @@ namespace CCAPI_NCAPI
         private shutdownDelegate shutdown;
 
         private IntPtr libModule = IntPtr.Zero;
-        private readonly string CCAPIHASH = "C2FE9E1C387CF29AAC781482C28ECF86";
+        private readonly string CCAPIHASH = "44f8c8bc576ca8ba3f99ef46c2e4b9c3";
         private string programPath = "";
 
         public CCAPI()
@@ -129,7 +129,7 @@ namespace CCAPI_NCAPI
                     {
                         if (BitConverter.ToString(MD5.Create()
                             .ComputeHash(File.ReadAllBytes(DllUrl)))
-                            .Replace("-", "").Equals(CCAPIHASH))
+                            .Replace("-", "").Equals(CCAPIHASH, StringComparison.OrdinalIgnoreCase))
                         {
                             if (libModule == IntPtr.Zero)
                                 libModule = LoadLibrary(DllUrl);
@@ -159,12 +159,12 @@ namespace CCAPI_NCAPI
                             }
                             else
                             {
-                                MessageBox.Show("Impossible to load CCAPI.dll version 2.60.", "CCAPI.dll cannot be load", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Impossible to load CCAPI.dll version 2.80.", "CCAPI.dll cannot be load", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
-                            MessageBox.Show("You're not using the right CCAPI.dll please install the version 2.60.", "CCAPI.dll version incorrect", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("You're not using the right CCAPI.dll please install the version 2.80.", "CCAPI.dll version incorrect", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
